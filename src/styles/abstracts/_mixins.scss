@@ -1,0 +1,32 @@
+// All global mixins are defined in this file
+
+/**
+ * Mixin for applying flex style to an element.
+ * @param $dir - flex-direction.
+ * @param $justify - justify-content.
+ * @param $align - align-items.
+*/
+@mixin display-flex($dir: row, $justify: center, $align: center, $width: 100%, $height: fit-content) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $justify;
+    align-items: $align;
+    width: $width;
+    height: $height;
+}
+
+/**
+ * Mixin for applying font style to an element.
+ * @param $font - font-family.
+ * @param $weight - font-weight.
+ * @param $size - font-size.
+ * @param $line-height - line-height.
+ * @param $color - color.
+*/
+@mixin font-style($font: 'Gilroy, sans-serif', $weight: 500, $size: 16px, $line-height: 16px, $color: #ffffff) {
+    font-family: $font;
+    font-weight: $weight;
+    font-size: $size;
+    line-height: $line-height;
+    color: $color;
+}

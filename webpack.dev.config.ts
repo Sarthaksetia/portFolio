@@ -3,6 +3,11 @@ import { Configuration as WebpackConfiguration, HotModuleReplacementPlugin } fro
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
+
+
 interface Configuration extends WebpackConfiguration {
     devServer?: WebpackDevServerConfiguration;
 }
@@ -29,16 +34,27 @@ export const configuration: Configuration = {
                     },
                 },
             },
+            {
+                test: /\.(css|scss)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    // 'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
         ],
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
+        extensions: ['.js', '.jsx', '.json', '.scss', '.tsx', '.ts'],
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: 'src/index.html',
         }),
-        new HotModuleReplacementPlugin(),
+     
+        new MiniCssExtractPlugin(),
+  
     ],
     devtool: 'inline-source-map',
     devServer: {
@@ -47,6 +63,10 @@ export const configuration: Configuration = {
         port: 4000,
         open: true,
         hot: true,
+        inline: true
+    },
+    optimization: {
+        minimizer: [new CssMinimizerPlugin()],
     },
 };
 
