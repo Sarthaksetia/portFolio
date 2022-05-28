@@ -1,12 +1,13 @@
-import React from 'react'
-import { Header } from '../../component'
+import React from "react";
+import { Header } from "../../component";
+import HeroComponent from "../../component/hero/hero";
 
 const Home = () => {
-    return (
-        <div>
-            <Header></Header>
-        </div>
-    )
-}
+  return (
+    <div>
+      <HeroComponent></HeroComponent>
+    </div>
+  );
+};
 
-export default Home
+export default Home;
